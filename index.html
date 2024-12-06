@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weerbars</title>
+    <title>weerBars</title>
     <link href="https://pro.fontawesome.com/releases/v6.0.0-beta3/css/all.css" 
     rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" 
@@ -17,9 +17,13 @@
         <div class="header">
             <h2>Weerbericht</h2>
             <div class="weer-input">
-                  <input type="text" name="stad" id="stad_input" placeholder="Zoek een plaats">
-                  <button type="button">
-                    <i class="fa-regular fa-search"></i> Zoek
+                  <input type="text" name="city" id="city_input" placeholder="Zoek een plaats">
+                  <button type="button" id="searchBtn">
+                    <i class="fa-regular fa-search"></i> Zoeken
+                  </button>
+
+                  <button type="button" id="locationBtn">
+                    <i class="bx bx-target-lock "></i> Mijn locatie 
                   </button>
             </div>
         </div>
