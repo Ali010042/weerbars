@@ -92,17 +92,17 @@ body {
 
             }
         }
-        &.kaart-footer p{
+        & .kaart-footer p{
             font-size: 14px;
             margin-bottom: 12px;
 
         }
-        &.voorspelling-items{
+        & .voorspelling-items{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             place-items: center;
             margin-bottom: 15px;
-            &.icon-wrapper{
+            & .icon-wrapper{
                 display: flex;
                 align-items: center;
 
