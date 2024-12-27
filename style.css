@@ -63,9 +63,9 @@ body {
     }
 }
 
+/* Berkay × Header design (eind) */
 
-
-/* Ali × linker kolom design */
+/* Ali × linkerkolom design */
 
 .kaart{
     background-color: var(--bg-color2);
@@ -201,7 +201,11 @@ body {
         }
     }
 }
-/* Sefa × responsive design */
+
+/* Ali × linkerkolom design (eind) */
+
+/* Sefa × Responsive design */
+
 @media(max-width: 1100px){
     .weather-data{
        grid-template-columns: repeat(3, 1fr); 
@@ -309,4 +313,4 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-/* Sefa × einde responsive design */
+/* Sefa × Responsive design (eind) */
