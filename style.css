@@ -181,7 +181,7 @@ body {
                 }
                 &
             }
-            
+
             & .zondsopgang-ondergang{
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
@@ -208,7 +208,7 @@ body {
 
 @media(max-width: 1100px){
     .weather-data{
-       grid-template-columns: repeat(3, 1fr); 
+       grid-template-columns: repeat(3, 1fr);
        & .weather-right{
         grid-column: span 2;
         & .highlights{
@@ -229,7 +229,7 @@ body {
         & .weather-right{
             grid-column: span 1;
             & .highlights{
-                grid-template-columns: repeat(2, 1fr); 
+                grid-template-columns: repeat(2, 1fr);
                 & .card:nth-of-type(1){
                     grid-column: span 2;
                 }
@@ -277,7 +277,7 @@ body {
             width: 100%;
             margin-bottom: 10px;
         }
-   } 
+   }
 }
 @media(max-width: 580px){
     .weather-data .weather-right .highlights .air-indices{
