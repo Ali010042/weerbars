@@ -2,6 +2,7 @@ let cityInput = document.getElementById('city_input'),
     searchBtn = document.getElementById('searchBtn'),
     api_key = '681b45cb415365cab9ca972bd397c291',
     currentWeatherCard = document.querySelectorAll('.weer-links .kaart')[0];
+    fiveDAysForecast = document.querySelector('.day-forecast');
 
 function getWeatherDetails(name, lat, lon, country, state) {
     let FORECAST_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`,
@@ -52,6 +53,31 @@ function getWeatherDetails(name, lat, lon, country, state) {
         })
         .catch(() => {
             alert('Gevaald voor de komende weer te laten zien');
+        });
+        fetch(FORECAST_API_URL).then(res => res.json()).then(date => {
+            let uniqueForecastDays = [];
+            let fiveDAysForecast = data.list.filter(forecast =>{
+                let forecastDate = new date(forecast.dt_txt).getdate();
+                if(!uniqueForecastDays.includes(forecastDate)){
+                    return uniqueForecastDays.push(forecastDate);
+                }
+            });
+            fiveDAysForecast.innerHTML = '';
+            for(i = 1; i < fiveDAysForecast.length; i++){
+                let date = new date(fiveDAysForecast[i].dt_txt)
+                fiveDAysForecast.innerHTML += `
+                    <div class="dag-voorspelling">
+                        <div class="icon-wrapper">
+                            <img src="https://openweathermap.org/img/wn/${fiveDAysForecast[i].weather[0].icon}.png" alt="">
+                            <span>${(fiveDAysForecast[i].main.temp - 273.15).toFixed(2)}&deg;C</span>
+                        </div>
+                        <p>${date.getDate()} ${months[date.getMonth]}</p>
+                        <p>${days[getDay()]}</p>
+                    </div>
+                `
+            }
+        }).catch(() => {
+            alert('gevaald om weerbericht');
         });
 }
 
