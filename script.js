@@ -1,83 +1,69 @@
 let cityInput = document.getElementById('city_input'),
     searchBtn = document.getElementById('searchBtn'),
     api_key = '681b45cb415365cab9ca972bd397c291',
-    currentWeatherCard = document.querySelectorAll('.weer-links .kaart')[0];
-    fiveDAysForecast = document.querySelector('.day-forecast');
+    currentWeatherCard = document.querySelectorAll('.weer-links .kaart')[0],
+    fiveDaysForecastContainer = document.querySelector('.dag-voorspelling');
 
 function getWeatherDetails(name, lat, lon, country, state) {
     let FORECAST_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${api_key}`,
         WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}`,
-        days = [
-            'Maandag',
-            'Dinsdag',
-            'Woensdag',
-            'Donderdag',
-            'Vrijdag',
-            'Zaterdag',
-            'Zondag'
-        ],
-        months = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Mei',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Okt',
-            'Nov',
-            'Dec'
-        ];
+        days = ['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'],
+        months = ['Jan', 'Feb', 'Mar', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
 
     fetch(WEATHER_API_URL)
         .then(res => res.json())
         .then(data => {
             let date = new Date();
             currentWeatherCard.innerHTML = `
-            <div class="nu-weer">
-                <div class="details">
-                    <p>Nu</p>
-                    <h2>${(data.main.temp - 273.15).toFixed(2)}&deg;C</h2>
-                    <p>${data.weather[0].description}</p>
+                <div class="nu-weer">
+                    <div class="details">
+                        <p>Nu</p>
+                        <h2>${(data.main.temp - 273.15).toFixed(2)}&deg;C</h2>
+                        <p>${data.weather[0].description}</p>
+                    </div>
+                    <div class="weer-icon">
+                        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="">
+                    </div>
                 </div>
-                <div class="weer-icon">
-                    <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="">
-                </div>
-            </div>
-            <hr>
-            <div class="kaart-footer">
-                <p><i class="fa-light fa-calendar"></i> ${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</p>
-                <p><i class="fa-light fa-location-dot"></i> ${name}, ${country}</p>
-            </div>`;
+                <hr>
+                <div class="kaart-footer">
+                    <p><i class="fa-light fa-calendar"></i> ${days[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}</p>
+                    <p><i class="fa-light fa-location-dot"></i> ${name}, ${country}</p>
+                </div>`;
         })
         .catch(() => {
             alert('Gevaald voor de komende weer te laten zien');
         });
-        fetch(FORECAST_API_URL).then(res => res.json()).then(date => {
+
+    fetch(FORECAST_API_URL)
+        .then(res => res.json())
+        .then(data => {
             let uniqueForecastDays = [];
-            let fiveDAysForecast = data.list.filter(forecast =>{
-                let forecastDate = new date(forecast.dt_txt).getdate();
-                if(!uniqueForecastDays.includes(forecastDate)){
-                    return uniqueForecastDays.push(forecastDate);
+            let fiveDaysForecast = data.list.filter(forecast => {
+                let forecastDate = new Date(forecast.dt_txt).getDate();
+                if (!uniqueForecastDays.includes(forecastDate)) {
+                    uniqueForecastDays.push(forecastDate);
+                    return true;
                 }
+                return false;
             });
-            fiveDAysForecast.innerHTML = '';
-            for(i = 1; i < fiveDAysForecast.length; i++){
-                let date = new date(fiveDAysForecast[i].dt_txt)
-                fiveDAysForecast.innerHTML += `
+
+            fiveDaysForecastContainer.innerHTML = '';
+            for (let i = 1; i < fiveDaysForecast.length; i++) {
+                let date = new Date(fiveDaysForecast[i].dt_txt);
+                fiveDaysForecastContainer.innerHTML += `
                     <div class="dag-voorspelling">
                         <div class="icon-wrapper">
-                            <img src="https://openweathermap.org/img/wn/${fiveDAysForecast[i].weather[0].icon}.png" alt="">
-                            <span>${(fiveDAysForecast[i].main.temp - 273.15).toFixed(2)}&deg;C</span>
+                            <img src="https://openweathermap.org/img/wn/${fiveDaysForecast[i].weather[0].icon}@2x.png" alt="">
+                            <span>${(fiveDaysForecast[i].main.temp - 273.15).toFixed(2)}&deg;C</span>
                         </div>
-                        <p>${date.getDate()} ${months[date.getMonth]}</p>
-                        <p>${days[getDay()]}</p>
-                    </div>
-                `
+                        <p>${date.getDate()} ${months[date.getMonth()]}</p>
+                        <p>${days[date.getDay()]}</p>
+                    </div>`;
             }
-        }).catch(() => {
-            alert('gevaald om weerbericht');
+        })
+        .catch(() => {
+            alert('Gevaald om weerbericht te laden');
         });
 }
 
