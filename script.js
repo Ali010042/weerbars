@@ -10,6 +10,7 @@ function getWeatherDetails(name, lat, lon, country, state) {
         days = ['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag', 'Zondag'],
         months = ['Jan', 'Feb', 'Mar', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
 
+
     fetch(WEATHER_API_URL)
         .then(res => res.json())
         .then(data => {
@@ -22,7 +23,7 @@ function getWeatherDetails(name, lat, lon, country, state) {
                         <p>${data.weather[0].description}</p>
                     </div>
                     <div class="weer-icon">
-                        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="">
+                        <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Weer icoon">
                     </div>
                 </div>
                 <hr>
@@ -32,12 +33,13 @@ function getWeatherDetails(name, lat, lon, country, state) {
                 </div>`;
         })
         .catch(() => {
-            alert('Gevaald voor de komende weer te laten zien');
+           //alert('Gefaald om het huidige weer weer te geven');
         });
 
     fetch(FORECAST_API_URL)
         .then(res => res.json())
         .then(data => {
+            console.log(data.list);
             let uniqueForecastDays = [];
             let fiveDaysForecast = data.list.filter(forecast => {
                 let forecastDate = new Date(forecast.dt_txt).getDate();
@@ -48,13 +50,13 @@ function getWeatherDetails(name, lat, lon, country, state) {
                 return false;
             });
 
-            fiveDaysForecastContainer.innerHTML = '';
+            fiveDaysForecastContainer.innerHTML = ''; // Container legen
             for (let i = 1; i < fiveDaysForecast.length; i++) {
                 let date = new Date(fiveDaysForecast[i].dt_txt);
                 fiveDaysForecastContainer.innerHTML += `
                     <div class="dag-voorspelling">
                         <div class="icon-wrapper">
-                            <img src="https://openweathermap.org/img/wn/${fiveDaysForecast[i].weather[0].icon}@2x.png" alt="">
+                            <img src="https://openweathermap.org/img/wn/${fiveDaysForecast[i].weather[0].icon}@2x.png" alt="Weer icoon">
                             <span>${(fiveDaysForecast[i].main.temp - 273.15).toFixed(2)}&deg;C</span>
                         </div>
                         <p>${date.getDate()} ${months[date.getMonth()]}</p>
@@ -63,7 +65,7 @@ function getWeatherDetails(name, lat, lon, country, state) {
             }
         })
         .catch(() => {
-            alert('Gevaald om weerbericht te laden');
+            alert('Gefaald om de vijfdaagse voorspelling te laden');
         });
 }
 
@@ -83,7 +85,7 @@ function getCityCoordinates() {
             getWeatherDetails(name, lat, lon, country, state);
         })
         .catch(() => {
-            alert(`Gevaaldt om de weer te zien van ${cityname}`);
+            alert(`Gefaald om de locatiegegevens van ${cityname} te laden`);
         });
 }
 
