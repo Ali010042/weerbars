@@ -1,7 +1,13 @@
 let cityInput = document.getElementById('city_input'),
     searchBtn = document.getElementById('searchBtn'),
     api_key = '681b45cb415365cab9ca972bd397c291',
-    currentWeatherCard = document.querySelectorAll('.weer-links .kaart')[0],
+    currentWeatherCard = document.querySelectorAll('.weer-linker
+
+
+
+
+
+        .kaart')[0],
     fiveDaysForecastContainer = document.querySelector('.dag-voorspelling');
 
 function getWeatherDetails(name, lat, lon, country, state) {
