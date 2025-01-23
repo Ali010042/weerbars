@@ -313,4 +313,30 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-/* Sefa × Responsive design (eind) */
+/* Sefa × Responsive design (EIND) */
+
+
+
+/*Berkay × Blog*/
+#blog{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    
+}
+
+.blog-heading{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 370px;
+    transform: translateY(-1000%);
+}
+
+.blog-heading h3{
+    font-size: 1.5rem;
+}
+
+
+/*Berkay × Blog (EIND)*/
