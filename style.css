@@ -321,22 +321,113 @@ body {
 #blog{
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    
+    margin-left: -300px;
+    padding: 20px
 }
 
 .blog-heading{
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
-    padding-left: 370px;
-    transform: translateY(-1000%);
+    margin-left: -250px;
+    transform: translateY(-1200%);
 }
 
 .blog-heading h3{
     font-size: 1.5rem;
 }
 
+.blog-container{
+    display: flex;
+    margin: 20px 0px;
+    flex-wrap: wrap;
+}
+
+.blog-box{
+    width: 300px;
+    margin: -60px;
+}
+
+.blog-img {
+    width: 100%;
+    height: auto;
+}
+
+.blog-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border: 4px solid #fff;
+    transform: translateY(-130%);
+}
+
+.blog-text{
+    padding:
+    display: flex;
+    transform: translateY(-270%);
+}
+
+.blog-title{
+    text-decoration: underline;
+}
+
+.blog-text .blog-title:hover{
+    color: #999;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+
+/*-------------------------------------*/
+
+.blog-container1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: -1000px;
+    padding: 40px;
+    
+}
+
+.blog-box1{
+    width: 300px;
+    margin: -30px;
+}
+
+.blog-img1 {
+    width: 100%;
+    height: auto;
+}
+
+.blog-img1 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border: 4px solid #fff;
+    transform: translateY(-283%);
+    
+}
+
+.blog-text1{
+    padding:
+    display: flex;
+    transform: translateY(-600%);
+}
+
+.blog-title1{
+    text-decoration: underline;
+}
+
+.blog-text1 .blog-title1:hover{
+    color: #999;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
 
 /*Berkay × Blog (EIND)*/
