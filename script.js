@@ -1,5 +1,6 @@
-let cityInput = document.getElementById('city_input'),
+    let cityInput = document.getElementById('city_input'),
     searchBtn = document.getElementById('searchBtn'),
+    locationBtn = document.getElementById('locationBtn'),
     api_key = '681b45cb415365cab9ca972bd397c291',
     currentWeatherCard = document.querySelectorAll('.weer-linker .kaart')[0],
     fiveDaysForecastContainer = document.querySelector('.dag-voorspelling'),
@@ -182,4 +183,24 @@ function getCityCoordinates() {
         });
 }
 
+function getUserCoordinates(){
+    navigator.geolocation.getCurrentPosition(position => {
+    let {latitude, longitude} = position.coords;
+    let REVERSE_GEOCODING_URL = 'https://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon=${longitude}&limit=1&appid={api_key}';
+    fetch(REVERSE_GEOCODING_URL).then(res => res.json()).then(data => {
+        let{name, country, state} = data[0];
+        getWeatherDetails(name, latitude, longitude, country, state);
+    }).catch(() => {
+        alert('niet gelukt')
+    });
+}, error => {
+    if(error.code === error.PERMISSION_DENIED){
+        alert('toegankelijkheid geweigerd')
+    }
+});
+}
+
 searchBtn.addEventListener('click', getCityCoordinates);
+locationBtn.addEventListener('click', getUserCoordinates);
+cityInput.addEventListener('keyup', e => e.key === 'Enter' && getCityCoordinates());
+window.addEventListener('load', getUserCoordinatesetUse);
