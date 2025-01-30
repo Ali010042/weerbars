@@ -188,21 +188,22 @@ function getCityCoordinates() {
 function getUserCoordinates(){
     navigator.geolocation.getCurrentPosition(position => {
     let {latitude, longitude} = position.coords;
-    let REVERSE_GEOCODING_URL = 'https://api.openweathermap.org/geo/1.0/reverse?lat={latitude}&lon=${longitude}&limit=1&appid={api_key}';
+    let REVERSE_GEOCODING_URL = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${api_key}`;
+
     fetch(REVERSE_GEOCODING_URL).then(res => res.json()).then(data => {
         let{name, country, state} = data[0];
         getWeatherDetails(name, latitude, longitude, country, state);
     }).catch(() => {
-        alert('niet gelukt')
+        alert('Fout bij het ophalen van gebruikerscoördinaten')
     });
 }, error => {
     if(error.code === error.PERMISSION_DENIED){
-        alert('toegankelijkheid geweigerd')
+        alert('Geolocatie-toestemming geweigerd. Reset de locatietoestemming om opnieuw toegang te verlenen')
     }
 });
 }
 
 searchBtn.addEventListener('click', getCityCoordinates);
 locationBtn.addEventListener('click', getUserCoordinates);
-cityInput.addEventListener('keyup', e => e.key === 'Enter' && getCityCoordinates());
-window.addEventListener('load', getUserCoordinatesetUse);
+
+
