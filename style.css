@@ -25,6 +25,10 @@ body {
     padding: 0 15px;
 }
 
+.a {
+    color: #fff;
+}
+
 .header {
     position: sticky;
     top: 0;
@@ -34,6 +38,7 @@ body {
     align-items: center;
     margin-bottom: 10px;
     padding: 15px 0;
+    text-decoration: none;
     & #city_input {
         background-color: var(--bg-color2);
         border: none;
@@ -51,7 +56,7 @@ body {
         padding: 12px;
         border-radius: 25px;
         background-color: #fff;
-        cursor: pointer;
+        cursorSS: pointer;
     }
     & #locationBtn{
         border: none;
@@ -61,6 +66,17 @@ body {
         background-color: #ea6e4b;
         cursor: pointer;
     }
+    & #blogBtn{
+        border: none;
+        font-size: 16px;
+        padding: 12px;
+        margin-right: 700px;
+        border-radius: 25px;
+        background-color: #fff;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
 }
 
 /* Berkay × Header design (eind) */
@@ -321,35 +337,43 @@ body {
 /*Berkay × Blog*/
 #blog{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-left: -300px;
-    padding: 20px
+    padding: 40px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .blog-heading{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-left: -250px;
-    transform: translateY(-1200%);
+}
+
+.blog-heading span{
+    color: #cdced1;
+    font-size: 1.2rem;
 }
 
 .blog-heading h3{
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .blog-container{
     display: flex;
+    justify-content: center;
+    align-items: center;    
     margin: 20px 0px;
     flex-wrap: wrap;
 }
 
 .blog-box{
-    width: 300px;
-    margin: -60px;
+    width: 350px;
+    background-color: var(--bg-color2);
+    border-radius: 15px;
+    margin: 20px 20px;
 }
 
 .blog-img {
@@ -362,73 +386,54 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    border: 4px solid #fff;
-    transform: translateY(-130%);
 }
 
-.blog-text{
-    padding:
+.blog-text {
+    padding: 30px;
     display: flex;
-    transform: translateY(-270%);
-}
-
-.blog-title{
-    text-decoration: underline;
-}
-
-.blog-text .blog-title:hover{
-    color: #999;
-    transition: all ease 0.3s;
-    cursor: pointer;
-}
-
-
-/*-------------------------------------*/
-
-.blog-container1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    margin-right: -1000px;
-    padding: 40px;
-    
 }
 
-.blog-box1{
-    width: 300px;
-    margin: -30px;
+.blog-text span {
+    color: #cdced1;
+    font-size: 0.9rem;
 }
 
-.blog-img1 {
-    width: 100%;
-    height: auto;
+.blog-text a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
 }
 
-.blog-img1 img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border: 4px solid #fff;
-    transform: translateY(-283%);
-    
-}
-
-.blog-text1{
-    padding:
-    display: flex;
-    transform: translateY(-600%);
-}
-
-.blog-title1{
-    text-decoration: underline;
-}
-
-.blog-text1 .blog-title1:hover{
-    color: #999;
+.blog-text .blog-title:hover {
+    color:#7c7c7c;
     transition: all ease 0.3s;
-    cursor: pointer;
 }
+
+.blog-text p {
+    color: #cdced1;
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-line-camp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 20px 0px;
+}
+
+.blog-text a:hover {
+    color: #7c7c7c;
+    transition: all ease 0.3s;
+}
+
+#blog1Btn{
+    border: none;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 
 /*Berkay × Blog (EIND)*/
