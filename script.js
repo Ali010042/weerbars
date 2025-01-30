@@ -6,11 +6,13 @@
     fiveDaysForecastContainer = document.querySelector('.dag-voorspelling'),
     aqiCard = document.querySelectorAll('.highlights .kaart')[0],
     sunriseCard = document.querySelectorAll('.highlights .kaart')[1],
-    neerslagkans = document.getElementById('neerslagkans'),
-    luchtdruk = document.getElementById('luchtdruk'),
-    zicht = document.getElementById('zicht'),
-    snelheid = document.getElementById('snelheid'),
-    windsnelheid = document.getElementById('windsnelheid'),
+    humidityVal = document.getElementById('humidityVal'),
+    pressureVal = document.getElementById('pressureVal'),
+    visibilityVal = document.getElementById('visibilityVal'),
+    windSpeedVal = document.getElementById('windSpeedVal'),
+    feelsVal = document.getElementById('feelsVal'),
+   
+    
 
     aqiList = ['Goed', 'Prima', 'Oke', 'Slecht', 'Heel slecht'];
 
@@ -90,11 +92,11 @@ function getWeatherDetails(name, lat, lon, country, state) {
                     <p><i class="fa-light fa-location-dot"></i> ${name}, ${country}</p>
                 </div>`;
                 let {sunrise, sunset} = data.sys,
-                 {timezone , visibility} = data,
+                 {timezone, visibility} = data,
                  {humidity, pressure, feels_like} = data.main,
                  {speed} = data.wind,
                 sRiseTime = moment.utc(sunrise, 'X').add(timezone, 'seconds').format('hh:mm A'),
-                sSetTime = moment.utc(sunset, 'X').add(timezone, 'seconds').format('hh:mm A')
+                sSetTime = moment.utc(sunset, 'X').add(timezone, 'seconds').format('hh:mm A');
                 sunriseCard.innerHTML = `
                   <div class="kaart-hoofd">
                            <p>Zondsopgang en Zondsondergang</p>
@@ -120,11 +122,11 @@ function getWeatherDetails(name, lat, lon, country, state) {
                         </div>
                     </div>
                         `;
-                    neerslagkans.innerHTML = `${neerslagkans}%`;
-                    luchtdruk.innerHTML = `${luchtdruk}hPa`;
-                    zicht.innerHTML = `${zicht / 1000}km`;
-                    snelheid.innerHTML = `${snelheid}m/s`;
-                    windsnelheid.innerHTML = `${(feels_like - 273.15).toFixed(2)}&deg;C`;
+                    humidityVal.innerHTML = `${humidity}%`;
+                    pressureVal.innerHTML = `${pressure}hPa`;
+                    visibilityVal.innerHTML = `${visibility / 1000}km`;
+                    windSpeedVal.innerHTML = `${speed}km`;
+                    feelsVal.innerHTML = `${(feels_like - 273.15).toFixed(2)}&deg;C`;
         })
         .catch(() => {
            //alert('Gefaald om het huidige weer weer te geven');
