@@ -335,6 +335,12 @@ body {
 
 
 /*Berkay × Blog*/
+.nieuws{
+    display: flex;
+    flex-direction: row ;
+    justify-content: center;
+    align-items: center;
+}
 #blog{
     display: flex;
     flex-direction: column;
